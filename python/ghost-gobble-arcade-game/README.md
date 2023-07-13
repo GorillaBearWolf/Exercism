@@ -91,4 +91,4 @@ False
 ### Contributed to by
 
 - @cmccandless
-- @bethanyg
+- @bethany
