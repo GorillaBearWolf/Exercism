@@ -92,11 +92,7 @@ def can_split_pairs(card_one, card_two):
     :return: bool - can the hand be split into two pairs? (i.e. cards are of the same value).
     """  # noqa: E501
 
-    cards = [card_one, card_two]
-
-    if card_one is card_two:
-        return True
-    if 'K' in cards and 'Q' in cards:
+    if value_of_card(card_one) is value_of_card(card_two):
         return True
     return False
 
