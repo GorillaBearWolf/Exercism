@@ -79,4 +79,10 @@ def perfect_score(student_info):
     :return: list - first `[<student name>, 100]` or `[]` if no student score of 100 is found.
     """  # noqa: E501
 
-    pass
+    perfect_list = []
+
+    while student_info:
+        if student_info == 100:
+            perfect_list.append()
+            return perfect_list
+        return perfect_list
