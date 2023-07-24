@@ -17,11 +17,13 @@ def count_failed_students(student_scores):
     :return: int - count of student scores at or below 40.
     """
 
-    failing_students = 0
-    for score in student_scores:
-        if score <= 40:
-            failing_students += 1
-    return failing_students
+    return sum(1 for score in round_scores(student_scores) if score <= 40)
+
+    # failing_students = 0
+    # for score in student_scores:
+    #     if score <= 40:
+    #         failing_students += 1
+    # return failing_students
 
 
 def above_threshold(student_scores, threshold):
@@ -30,7 +32,7 @@ def above_threshold(student_scores, threshold):
     :param student_scores: list - of integer scores.
     :param threshold: int - threshold to cross to be the "best" score.
     :return: list - of integer scores that are at or above the "best" threshold.
-    """
+    """  # noqa: E501
 
     return [score for score in student_scores if score >= threshold]
 
@@ -50,12 +52,12 @@ def letter_grades(highest):
     """
 
     grade_interval = (highest - 40) // 4
-    D = 41
-    C = D + grade_interval
-    B = C + grade_interval
-    A = B + grade_interval
+    _d = 41
+    _c = _d + grade_interval
+    _b = _c + grade_interval
+    _a = _b + grade_interval
 
-    return [D, C, B, A]
+    return [_d, _c, _b, _a]
 
 
 def student_ranking(student_scores, student_names):
@@ -79,10 +81,7 @@ def perfect_score(student_info):
     :return: list - first `[<student name>, 100]` or `[]` if no student score of 100 is found.
     """  # noqa: E501
 
-    perfect_list = []
-
-    while student_info:
-        if student_info == 100:
-            perfect_list.append()
-            return perfect_list
-        return perfect_list
+    for student in student_info:
+        if student[1] == 100:
+            return student
+    return []
