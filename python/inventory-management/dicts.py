@@ -8,7 +8,10 @@ def create_inventory(items):
     :return: dict - the inventory dictionary.
     """
 
-    pass
+    inventory = {}
+    for item in items:
+        inventory[item] = items.count(item)
+    return inventory
 
 
 def add_items(inventory, items):
@@ -19,7 +22,9 @@ def add_items(inventory, items):
     :return: dict - the inventory updated with the new items.
     """
 
-    pass
+    for item in items:
+        inventory[item] += 1
+    return inventory
 
 
 def decrement_items(inventory, items):
