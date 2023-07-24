@@ -1,6 +1,6 @@
 import unittest
 import pytest
-from tuples import get_coordinate, convert_coordinate, compare_records, create_record, clean_up
+from tuples import get_coordinate, convert_coordinate, compare_records, create_record, clean_up  # noqa: E501
 
 
 class TisburyTreasureTest(unittest.TestCase):
