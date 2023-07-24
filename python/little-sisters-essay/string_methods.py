@@ -26,7 +26,7 @@ def clean_up_spacing(sentence):
 
     :param sentence: str - a sentence to clean of leading and trailing space characters.
     :return: str - a sentence that has been cleaned of leading and trailing space characters.
-    """
+    """  # noqa: E501
 
     return sentence.strip()
 
