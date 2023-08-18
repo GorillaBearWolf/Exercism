@@ -29,8 +29,10 @@ def add_missing_stops(route, **kwargs):
     :param: arbitrary number of stops.
     :return: dict - updated route dictionary.
     """
-    updated_route = {**route, **kwargs}
-    return updated_route
+    kwargs_dict = {**kwargs}
+    *stops, = kwargs_dict.values()
+    route["stops"] = stops
+    return route
 
 
 def extend_route_information(route, more_route_information):
