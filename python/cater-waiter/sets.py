@@ -21,7 +21,7 @@ def clean_ingredients(dish_name, dish_ingredients):
     followed by the de-duped `set` of ingredients as the second item.
     """
 
-    pass
+    return  (dish_name, set(dish_ingredients))
 
 
 def check_drinks(drink_name, drink_ingredients):
@@ -33,10 +33,11 @@ def check_drinks(drink_name, drink_ingredients):
 
     The function should return the name of the drink followed by "Mocktail" (non-alcoholic) and drink
     name followed by "Cocktail" (includes alcohol).
-
     """
 
-    pass
+    if ALCOHOLS.isdisjoint(drink_ingredients):
+        return f"{drink_name} Mocktail"
+    return f"{drink_name} Cocktail"
 
 
 def categorize_dish(dish_name, dish_ingredients):
