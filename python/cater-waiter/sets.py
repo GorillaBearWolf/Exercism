@@ -21,7 +21,7 @@ def clean_ingredients(dish_name, dish_ingredients):
     followed by the de-duped `set` of ingredients as the second item.
     """
 
-    return  (dish_name, set(dish_ingredients))
+    return (dish_name, set(dish_ingredients))
 
 
 def check_drinks(drink_name, drink_ingredients):
@@ -75,7 +75,7 @@ def tag_special_ingredients(dish):
     SPECIAL_INGREDIENTS constant imported from `sets_categories_data.py`.
     """
 
-    pass
+    return (dish[0], SPECIAL_INGREDIENTS.intersection(dish[1]))
 
 
 def compile_ingredients(dishes):
@@ -87,7 +87,12 @@ def compile_ingredients(dishes):
     This function should return a `set` of all ingredients from all listed dishes.
     """
 
-    pass
+    ingredients = set()
+    for dish in dishes:
+        ingredients = ingredients.union(dish)
+    return ingredients
+
+    # return set.union(*dishes)
 
 
 def separate_appetizers(dishes, appetizers):
@@ -101,7 +106,10 @@ def separate_appetizers(dishes, appetizers):
     Either list could contain duplicates and may require de-duping.
     """
 
-    pass
+    for dish in dishes:
+        if dish in appetizers:
+            del dish
+    return dishes
 
 
 def singleton_ingredients(dishes, intersection):
