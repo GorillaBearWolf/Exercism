@@ -51,17 +51,15 @@ def categorize_dish(dish_name, dish_ingredients):
     `<CATEGORY>` can be any one of  (VEGAN, VEGETARIAN, PALEO, KETO, or OMNIVORE).
     All dishes will "fit" into one of the categories imported from `sets_categories_data.py`
     """
-
-    if VEGAN.issuperset(dish_ingredients):
-        return f"{dish_name}: VEGAN"
-    if VEGETARIAN.issuperset(dish_ingredients):
-        return f"{dish_name}: VEGETARIAN"
-    if PALEO.issuperset(dish_ingredients):
-        return f"{dish_name}: PALEO"
-    if KETO.issuperset(dish_ingredients):
-        return f"{dish_name}: KETO"
-    if OMNIVORE.issuperset(dish_ingredients):
-        return f"{dish_name}: OMNIVORE"
+    for category, name in (
+        (VEGAN, "VEGAN"),
+        (VEGETARIAN, "VEGETARIAN"),
+        (PALEO, "PALEO"),
+        (KETO, "KETO"),
+        (OMNIVORE, "OMNIVORE"),
+        ):
+        if set(dish_ingredients).issubset(set(category)):
+            return f"{dish_name}: {name}"
 
 
 def tag_special_ingredients(dish):
@@ -123,5 +121,8 @@ def singleton_ingredients(dishes, intersection):
 
     The function should return a `set` of ingredients that only appear in a single dish.
     """
-
-    pass
+    singletons = set()
+    for dish in dishes:
+        singletons = singletons.union(dish.difference(intersection))
+        # singletons = singletons | dish - intersection
+    return singletons
