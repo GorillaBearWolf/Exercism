@@ -55,8 +55,16 @@ def send_to_store(cart, aisle_mapping):
     :return: dict - fulfillment dictionary ready to send to store.
     """
 
-    cart |= aisle_mapping.items()
-    return sorted(reversed(cart))
+    fulfillment_dict = {}
+    print(f"am={aisle_mapping.items()}")
+
+    for key in (cart.keys() | aisle_mapping.keys()):
+        fulfillment_dict.setdefault(key, []).append(cart.get(key))
+        fulfillment_dict.setdefault(key, []).append(aisle_mapping.get(key))
+
+    print(f"fd={dict(sorted(fulfillment_dict.items()))}")
+    return dict(sorted(fulfillment_dict.items()))
+    #return sorted(reversed(cart))
 
 
 def update_store_inventory(fulfillment_cart, store_inventory):
