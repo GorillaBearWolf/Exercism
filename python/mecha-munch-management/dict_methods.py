@@ -34,7 +34,8 @@ def update_recipes(ideas, recipe_updates):
     :return: dict - updated "recipe ideas" dict.
     """
 
-    return ideas.update(recipe_updates)
+    ideas.update(recipe_updates)
+    return ideas
 
 
 def sort_entries(cart):
@@ -55,16 +56,13 @@ def send_to_store(cart, aisle_mapping):
     :return: dict - fulfillment dictionary ready to send to store.
     """
 
+
     fulfillment_dict = {}
-    print(f"am={aisle_mapping.items()}")
 
-    for key in (cart.keys() | aisle_mapping.keys()):
-        fulfillment_dict.setdefault(key, []).append(cart.get(key))
-        fulfillment_dict.setdefault(key, []).append(aisle_mapping.get(key))
+    for key in cart.keys():
+        fulfillment_dict[key] = [cart[key], aisle_mapping[key][0], aisle_mapping[key][1]]
 
-    print(f"fd={dict(sorted(fulfillment_dict.items()))}")
-    return dict(sorted(fulfillment_dict.items()))
-    #return sorted(reversed(cart))
+    return dict(sorted(fulfillment_dict.items(), reverse=True))
 
 
 def update_store_inventory(fulfillment_cart, store_inventory):
@@ -75,4 +73,12 @@ def update_store_inventory(fulfillment_cart, store_inventory):
     :return: dict - store_inventory updated.
     """
 
-    pass
+    for key in fulfillment_cart.keys():
+        new_count = store_inventory[key][0] - fulfillment_cart[key][0]
+
+        if new_count < 1:
+            store_inventory[key][0] = "Out of Stock"
+        else:
+            store_inventory[key][0] = new_count
+
+    return store_inventory
