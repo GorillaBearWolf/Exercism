@@ -14,7 +14,9 @@ def generate_seat_letters(number):
 
     """
 
-    pass
+    letters = ["A", "B", "C", "D"]
+    for num in range(number):
+        yield letters[num % 4]
 
 
 def generate_seats(number):
@@ -34,7 +36,11 @@ def generate_seats(number):
 
     """
 
-    pass
+    letters = ["A", "B", "C", "D"]
+    for num in range(number):
+        while num % number < num:
+            yield letters[num % 4]
+
 
 def assign_seats(passengers):
     """Assign seats to passengers.
