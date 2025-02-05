@@ -2,9 +2,9 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-.p*
-pyvenv*
-pytest*
+__pycache__
+lib/
+*.cfg
 
 # Icon must end with two \r
 Icon
